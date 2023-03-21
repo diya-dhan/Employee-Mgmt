@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=title%></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      }
+      body, div, h1, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      }
+      h1 {
+      padding: 10px 0;
+      font-size: 32px;
+      font-weight: 300;
+      text-align: center;
+      }
+      p {
+      font-size: 12px;
+      }
+      hr {
+      color: #a9a9a9;
+      opacity: 0.3;
+      }
+      .main-block {
+      
+      padding: 10px 0;
+      margin-top: 50px;
+      }
+      form {
+      margin-left:450px;
+      width:100%;
+      min-width: 550px; 
+      }
+      .account-type, .gender {
+      margin: 15px 0;
+      }
+      input[type=radio] {
+      display: none;
+      }
+      label#icon {
+      border-radius: 5px 5px 5px 5px;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      padding-top: 4px;
+      margin-right: 20px;
+      text-indent: 30px;
+      overflow: visible;
+      cursor: pointer;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1c87c9;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 4px;
+      top: 8px;
+      left: 4px;
+      border: 3px solid #fff;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      input[type=text], input[type=password] {
+      width: 100px;
+      height: 36px;
+      margin: 13px 0 0 -5px;
+      padding-left: 10px; 
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #fff; 
+      }
+      input[type=password] {
+      margin-bottom: 15px;
+      }
+      #icon {
+      display: inline-block;
+      padding: 9.3px 15px;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #1c87c9;
+      color: #fff;
+      text-align: center;
+      }
+      .btn-block {
+      margin: 20px;
+      text-align: center;
+      
+      }
+      button {
+      padding: 10px;
+      border-radius: 5px; 
+      border: none;
+      background: #1c87c9; 
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      }
+      button:hover {
+      background: #26a9e0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 550px; 
+        
+        margin: 0 50px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        text-align: center;
+      }
+      thead {
+        background-color: #1c87c9;
+        color: #ffffff;
+      }
+      th {
+        text-align: center;
+        width:165px;
+        height: 50px;
+      }
+      
+      tbody tr {
+        background: #f4f4f4;
+        height:40px;
+      }
+
+      .attr {
+        background-color: #1c87c9;
+        color: #ffffff;
+        text-align: left;
+        padding-left : 15px;
+        height: 50px;
+       }
+       
+       .key {
+        width: 400px;
+        padding-left:10px;
+       }
+
+       a {
+        text-decoration: none;
+        color: #ffffff;
+       }
+
+      select{
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+<div class="main-block">
+  <button class="btn-block" style="margin-left:1050px;"><a href="/signOut">Logout</a></button>
+      <hr>
+      <h1><%=title%></h1>
+      <form name="filter" action="" method="get">
+
+          <td><label id="icon">Search By</label></td>
+          <td><select id="col">
+              <%for (let i=0; i<columns.length; i++) {%>
+                <option value="<%=columns[i]%>"><%=columns[i]%></option>
+              <% } %>
+              </select> 
+          </td>
+          <td><input type="text" id="value" placeholder="Value" required/></td>
+          <td><button id="submit" type="submit" class="dropbtn" href="/" value="Search" onclick="changeAction()">Search</button></td>
+          
+      </form>
+      <hr>
+      <script type="text/javascript">
+        function changeAction(){
+          let col = document.getElementById("col");
+          let val = document.getElementById('value').value;
+
+          col = col.options[col.selectedIndex].value;
+          
+          let href_parts = window.location.pathname.split('/');
+          document.filter.action = href_parts[0]+"/"+href_parts[1]+'/'+href_parts[2]+"/"+col+"/"+val;
+        }
+      </script>
+
+      <table id="table1">
+
+        <thead>
+            <tr>
+              <%for (let i=0; i<columns.length; i++) {%>
+              <th> <%=columns[i]%> </th>
+              <% } %>
+           </tr>
+          </thead>
+
+           <%for (let i=0; i<results.length; i++){%>
+           <tr id="values">
+            <%for(const key in results[i]) {%>
+            <td><%=results[i][key]%></td>
+            <%}%>  
+           </tr>
+           <%}%>
+
+        <tbody>
+        </tbody>
+      </table>  
+
+      <button style="margin-left:60px;" class="btn-block"><a href="/user/profile">Go back to profile</a></button>
+</div>
+  </body>
+</html>

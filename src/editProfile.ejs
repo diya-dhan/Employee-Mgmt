@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Personal Details</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      }
+      body, div, h1, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      }
+      h1 {
+      padding: 10px 0;
+      font-size: 32px;
+      font-weight: 300;
+      text-align: center;
+      }
+      p {
+      font-size: 12px;
+      }
+      hr {
+      color: #a9a9a9;
+      opacity: 0.3;
+      }
+      .main-block {
+      min-width: 450px; 
+      min-height: 300px; 
+      padding: 10px 0;
+      margin: auto;
+      border-radius: 5px; 
+      border: solid 1px #ccc;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+      background: #ebebeb; 
+      }
+      form {
+      margin: 0 30px;
+      }
+      label#icon {
+      margin: 0;
+      border-radius: 5px 0 0 5px;
+      }
+      #icon {
+      display: inline-block;
+      padding: 9.3px 15px;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #1c87c9;
+      color: #fff;
+      text-align: center;
+      }
+      .btn-block {
+      margin: 40px;
+      text-align: center;
+      display: inline-block;
+      }
+      button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px; 
+      border: none;
+      background: #1c87c9; 
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      }
+      button:hover {
+      background: #26a9e0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        max-width: 550px; 
+        min-height: 260px; 
+        margin: 0 50px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      thead {
+        background-color: #1c87c9;
+        color: #ffffff;
+      }
+      th {
+        text-align: center;
+        height: 50px;
+      }
+      
+      tbody tr {
+        background: #f4f4f4;
+      }
+
+      .attr {
+        background-color: #1c87c9;
+        color: #ffffff;
+        text-align: left;
+        padding-left : 15px;
+        height: 50px;
+       }
+       
+       .key {
+        width: 400px;
+        padding-left:10px;
+       }
+
+       a {
+        text-decoration: none;
+        color: #ffffff;
+       }
+
+       .edit{
+        background-color : #666;
+        color : #ffffff;
+       }
+    </style>
+  </head>
+
+  <script>
+
+    checkEdits = (id)=>{
+      let element = document.getElementById(id);
+      let value = element.innerHTML;
+
+      document.edit.action = window.location.href+'/'+id+'/'+value;
+    }
+  </script>
+
+  <body>
+<div class="main-block">
+
+      <h1>Edit Profile Details</h1>
+      <table>
+      
+      <form name="edit" action="" method="post">
+      <tbody>
+        <tr>
+          <td class="attr">Employee ID</td>
+          <td class="key"><%=user.empid%></td>
+        </tr>
+        <tr>
+          <td class="attr edit">First Name</td>
+          <td id="first_name" contenteditable=true class="key"><%=user.name.split(" ")[0]%></td>
+          <td> 
+            <div class="btn-block" style="margin:15px;">
+                <button type="submit" onClick="checkEdits('first_name')">Save Change</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="attr edit">Last Name</td>
+          <td id="last_name" contenteditable=true class="key"><%=user.name.split(" ")[1]%></td>
+          <td> 
+            <div class="btn-block" style="margin:15px;">
+                <button type="submit" onClick="checkEdits('last_name')">Save Change</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="attr edit">Email ID</td>
+          <td id="email" contenteditable=true class="key"><%=user.email%></td>
+          <td> 
+            <div class="btn-block" style="margin:15px;">
+              <button id="email" type="submit" onClick="checkEdits('email')">Save Change</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="attr edit">Phone Number</td>
+          <td id="phone_number" contenteditable=true class="key"><%=user.phonenum%></td>
+          <td> 
+            <div class="btn-block" style="margin:15px;">
+              <button id="phoneNum" type="submit" onClick="checkEdits('phone_number')">Save Change</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="attr">Department</td>
+          <td class="key"><%=user.dept%></td>
+        </tr>
+       <tr>
+          <td class="attr">Reporting to</td>
+          <td class="key"><%=user.mgr_name%></td>
+        </tr>
+       <tr>
+          <td class="attr">Role</td>
+          <td class="key"><%=user.role%></td>
+        </tr>
+      </tbody>
+      </table>
+
+    <div class="btn-block" style="margin-left:250px">
+        <button><a href="/user/profile">Go back to profile page</a></button>
+    </div>
+    </form>
+</div>
+  </body>
+</html>

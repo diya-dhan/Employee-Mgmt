@@ -1,0 +1,46 @@
+{
+  "name": "employee-mgmt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js",
+    "coverage": "nyc --reporter=text wdio"
+  },
+  "engines": {
+    "node" : "~18.13.0",
+    "npm" : "^9.6.2" 
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "localStorage": "^1.0.4",
+    "memorystore": "^1.6.7",
+    "nodemon": "^2.0.21",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.10.0"
+  },
+  "devDependencies": {
+    "@wdio/browser-runner": "^8.6.0",
+    "@wdio/cli": "^8.6.0",
+    "@wdio/devtools-service": "^8.6.2",
+    "@wdio/local-runner": "^8.6.1",
+    "@wdio/mocha-framework": "^8.5.6",
+    "@wdio/spec-reporter": "^8.4.0",
+    "chromedriver": "^111.0.0",
+    "nyc": "^15.1.0",
+    "wdio-chromedriver-service": "^8.1.1",
+    "wdio-coverage-service": "^1.0.2",
+    "wdio-wait-for": "^3.0.2"
+  }
+}
